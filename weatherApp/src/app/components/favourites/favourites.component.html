@@ -1,0 +1,47 @@
+<div class="container my-5">
+    <h1>Preferiti</h1>
+    <h2 *ngIf="favs.length === 0">Non ci sono preferiti</h2>
+
+    <div class="mb-3">
+        <button class="btn btn-primary" (click)="sortCitiesByTemperature()">
+            Ordina per Temperatura
+        </button>
+    </div>
+
+    <div>
+        <a routerLink="/">Back to Home</a>
+    </div>
+
+    <div class="row">
+        <div class="col-6 col-md-3" *ngFor="let c of favs">
+            <div class="card mb-4">
+                <img src="https://picsum.photos/200/300" class="card-img-top" alt="{{ c.name }}" />
+                <div class="card-body">
+                    <h5 class="card-title">{{ c.name }} - {{ c.country }}</h5>
+                    <p>{{ c.admin1 }}</p>
+                    <p class="card-text">
+                        Temperature: {{ (c.weatherData?.current)!.temperature_2m }}°C
+                    </p>
+                    <p class="list-group-item">
+                        Weather Code: {{ (c.weatherData?.current)!.weather_code }}
+                    </p>
+                    <p class="list-group-item">
+                        Wind Speed: {{ (c.weatherData?.current)!.wind_speed_10m }} km/h
+                    </p>
+                </div>
+                <div class="card-body border-top border-dark">
+                    <button class="btn btn-danger btn-sm" (click)="removeFromFav(c.id)">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="p-3 d-flex gap-3 border-top border-dark" *ngFor="let city of favs">
+    <button (click)="loadHourlyTemperature(city)">Mostra andamento temperature</button>
+    
+    <canvas #temperatureChartCanvas></canvas>
+  </div>
+  
+  

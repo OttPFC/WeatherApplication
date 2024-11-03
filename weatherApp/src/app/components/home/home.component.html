@@ -1,1 +1,44 @@
-<p>home works!</p>
+<div class="back">
+    <div class="container">
+        <div class="pt-3">
+            <div class="">
+                <form class="py-3" (ngSubmit)="getCity(cityName)">
+                    <div class="d-flex gap-3">
+                        <input type="text" class="input" name="txt" [(ngModel)]="cityName" required
+                    placeholder="Enter city name">
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
+                    <a routerLink="/fav">Favorites</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-6 col-md-3 py-3 mb-2" *ngFor="let c of city">
+                <div class="card mb-4">
+                    <img src="https://picsum.photos/200/300" class="card-img-top" alt="{{ c.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ c.name }} - {{c.country}}</h5>
+                        <p>{{c.admin1}}</p>
+                        <p class="card-text">
+                            Temperature: {{ c.weatherData?.current!.temperature_2m}}°C 
+                        </p>
+                        <p class="card-text">Weather Code: {{ c.weatherData?.current!.weather_code }} </p>
+                        <p> Humidity {{c.weatherData?.current?.relative_humidity_2m}}&#37;</p>
+                        <p class="list-group-item">Wind Speed: {{ c.weatherData?.current!.wind_speed_10m }} km/h</p>
+                    </div>
+                    <div class="p-3 d-flex gap-3 border-top border-dark">
+                        <button (click)="addToFavs(c)" [disabled]="isFav(c.id)" class="btn btn-outline"><svg
+                            width="16" height="16" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+                        </svg></button>
+                        <button class="btn btn-danger btn-sm" (click)="removeFromFavs(c.id)">Delete</button>
+                        
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
