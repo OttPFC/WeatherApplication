@@ -2,7 +2,7 @@
     background-image: url("/assets/img/weather2.avif");
     background-size: contain;
     background-repeat: repeat-y;
-    
+
 }
 
 .container{
@@ -10,7 +10,6 @@
 }
 
 .card{
-    transition: box-shadow 0.3s;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7);
-    height: 650px;
+    height:800px;
 }

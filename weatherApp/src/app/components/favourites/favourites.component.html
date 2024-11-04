@@ -26,8 +26,11 @@
                         Weather Code: {{ (c.weatherData?.current)!.weather_code }}
                     </p>
                     <p class="list-group-item">
-                        Wind Speed: {{ (c.weatherData?.current)!.wind_speed_10m }} km/h
+                        Humidity: {{ (c.weatherData?.current)!.relative_humidity_2m }} km/h
                     </p>
+                    <p class="list-group-item">
+                      Wind Speed: {{ (c.weatherData?.current)!.wind_speed_10m }} km/h
+                  </p>
                 </div>
                 <div class="card-body border-top border-dark">
                     <button class="btn btn-danger btn-sm" (click)="removeFromFav(c.id)">
@@ -38,10 +41,5 @@
         </div>
     </div>
 </div>
-<div class="p-3 d-flex gap-3 border-top border-dark" *ngFor="let city of favs">
-    <button (click)="loadHourlyTemperature(city)">Mostra andamento temperature</button>
-    
-    <canvas #temperatureChartCanvas></canvas>
-  </div>
-  
-  
+
+
